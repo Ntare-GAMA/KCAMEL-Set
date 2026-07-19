@@ -1,4 +1,4 @@
-# KCAMEL Set — Production Day
+# KCAMEL Set - Production Day
 
 A top-down 2D Unity game where you play a Director of Photography (DP) managing a single film shoot day: move between scene locations, choose a shot strategy for each one, and manage a finite lighting budget before the day wraps.
 
