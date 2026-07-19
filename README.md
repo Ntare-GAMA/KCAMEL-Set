@@ -14,7 +14,7 @@ You play a Director of Photography (DP) on a one-day shoot. Move between three f
 **Clone and open**
 1. Clone the repository:
    ```
-   git clone <this-repo-url>
+   git clone (https://github.com/Ntare-GAMA/KCAMEL-Set/)
    ```
 2. Open **Unity Hub** → **Add** → select the cloned project folder.
 3. Open the project — Unity will import assets and packages automatically on first load (this can take a few minutes).
