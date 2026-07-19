@@ -1,14 +1,3 @@
-// LightMeterUI.cs
-// Location in Unity project: Assets/Scripts/UI/LightMeterUI.cs
-//
-// Observer pattern subscriber to LightBudgetManager's events.
-//
-// NOTE: This version shrinks the bar's actual RectTransform width instead
-// of using Image.fillAmount — that keeps it compatible with ANY Image Type
-// (Tiled, Simple, Sliced), not just "Filled". The bar's anchors must be
-// set to stretch vertically (top+bottom) with a LEFT anchor point (anchor
-// min/max X = 0), so shrinking width always empties from the right side.
-
 using UnityEngine;
 using UnityEngine.UI;
 

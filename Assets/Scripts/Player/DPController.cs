@@ -1,6 +1,3 @@
-// DPController.cs
-// Location in Unity project: Assets/Scripts/Player/DPController.cs
-//
 // MonoBehaviour — needs Update()/FixedUpdate() and lives on the DP GameObject.
 
 using UnityEngine;

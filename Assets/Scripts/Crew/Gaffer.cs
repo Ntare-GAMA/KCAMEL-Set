@@ -1,6 +1,3 @@
-// Gaffer.cs
-// Location in Unity project: Assets/Scripts/Crew/Gaffer.cs
-
 using UnityEngine;
 
 public class Gaffer : CrewMember

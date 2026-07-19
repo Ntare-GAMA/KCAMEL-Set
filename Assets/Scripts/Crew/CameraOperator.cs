@@ -1,6 +1,3 @@
-// CameraOperator.cs
-// Location in Unity project: Assets/Scripts/Crew/CameraOperator.cs
-
 using UnityEngine;
 
 public class CameraOperator : CrewMember

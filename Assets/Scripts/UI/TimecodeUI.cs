@@ -1,9 +1,3 @@
-// TimecodeUI.cs
-// Location in Unity project: Assets/Scripts/UI/TimecodeUI.cs
-//
-// Purely cosmetic — a running timecode readout (HH:MM:SS), like a real
-// camera viewfinder display. Counts up from the moment the scene loads.
-
 using UnityEngine;
 using UnityEngine.UI;
 

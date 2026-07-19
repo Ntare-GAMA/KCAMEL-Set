@@ -1,6 +1,3 @@
-// SceneEventPublisher.cs
-// Location in Unity project: Assets/Scripts/Events/SceneEventPublisher.cs
-
 using System;
 
 /// <summary>

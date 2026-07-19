@@ -1,23 +1,3 @@
-// LightBudgetManager.cs
-// Location in Unity project: Assets/Scripts/Algorithms/LightBudgetManager.cs
-//
-// ALGORITHM #2: Resource optimization (light budget management)
-//
-// Problem it solves: the shoot day has finite light. Every shot strategy
-// consumes some of that light. The player must budget which strategies
-// to use across remaining scenes before light runs out ("losing golden hour").
-//
-// Approach: a decaying resource pool with a warning threshold, decremented
-// by whatever LightCost the chosen IShotStrategy reports. This is a simple
-// greedy resource-tracking model rather than a full optimizer — the
-// "optimization" is left to the player's decisions (Strategy pattern choice),
-// while this class just tracks and reports state honestly.
-//
-// Complexity: O(1) per update — a single subtraction and threshold check.
-// Factors affecting "performance" here aren't computational but strategic:
-// how many high-cost shots (Tracking) are chosen early drains the budget
-// faster, forcing cheaper choices (Wide) later in the day.
-
 using System;
 using UnityEngine;
 

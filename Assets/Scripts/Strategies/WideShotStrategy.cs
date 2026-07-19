@@ -1,6 +1,3 @@
-// WideShotStrategy.cs
-// Location in Unity project: Assets/Scripts/Strategies/WideShotStrategy.cs
-
 using UnityEngine;
 
 /// <summary>

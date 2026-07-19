@@ -1,10 +1,3 @@
-// ShotSelectButton.cs
-// Location in Unity project: Assets/Scripts/UI/ShotSelectButton.cs
-//
-// Attach this to each of your 3 shot-selection buttons (Wide/Close-up/Tracking).
-// Set the "shotType" dropdown in the Inspector to match which button this is.
-// On click, it builds the matching IShotStrategy and calls ProductionManager.ExecuteShot().
-
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,6 +1,3 @@
-// SoundTech.cs
-// Location in Unity project: Assets/Scripts/Crew/SoundTech.cs
-
 using UnityEngine;
 
 public class SoundTech : CrewMember

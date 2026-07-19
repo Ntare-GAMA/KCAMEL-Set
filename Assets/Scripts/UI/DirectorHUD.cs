@@ -1,10 +1,3 @@
-// DirectorHUD.cs
-// Location in Unity project: Assets/Scripts/UI/DirectorHUD.cs
-//
-// Observer pattern subscriber. Subscribes to SceneEventPublisher events
-// rather than being polled by ProductionManager every frame — the HUD
-// reacts only when something actually happens.
-
 using UnityEngine;
 using UnityEngine.UI;
 

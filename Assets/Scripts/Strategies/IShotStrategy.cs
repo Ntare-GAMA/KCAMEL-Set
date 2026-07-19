@@ -1,11 +1,3 @@
-// IShotStrategy.cs
-// Location in Unity project: Assets/Scripts/Strategies/IShotStrategy.cs
-
-/// <summary>
-/// Strategy pattern: defines a swappable shot-execution behavior.
-/// Each concrete strategy trades off time/light cost against quality yield,
-/// giving the player a meaningful choice per scene rather than a fixed outcome.
-/// </summary>
 public interface IShotStrategy
 {
     // Human-readable name shown in UI (e.g. shot selection buttons)

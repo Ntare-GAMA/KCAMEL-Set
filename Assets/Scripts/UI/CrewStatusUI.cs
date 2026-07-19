@@ -1,10 +1,3 @@
-// CrewStatusUI.cs
-// Location in Unity project: Assets/Scripts/UI/CrewStatusUI.cs
-//
-// Observer pattern subscriber. Reacts to SceneEventPublisher events by
-// updating status text AND briefly highlighting the crew icons, so the
-// Observer pattern's effect is visually obvious (useful for your video demo).
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;

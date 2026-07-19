@@ -1,14 +1,5 @@
-// TrackingShotStrategy.cs
-// Location in Unity project: Assets/Scripts/Strategies/TrackingShotStrategy.cs
-
 using UnityEngine;
 
-/// <summary>
-/// Highest cost in light and time, highest quality yield — but also the
-/// riskiest shot to attempt. A botched Tracking shot still costs full
-/// light and time, but returns much less quality, which is exactly the
-/// "high risk, high reward" tension that makes Strategy choice meaningful.
-/// </summary>
 public class TrackingShotStrategy : IShotStrategy
 {
     public string ShotName => "Tracking Shot";

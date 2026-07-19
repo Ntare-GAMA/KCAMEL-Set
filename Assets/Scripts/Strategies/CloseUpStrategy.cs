@@ -1,12 +1,4 @@
-// CloseUpStrategy.cs
-// Location in Unity project: Assets/Scripts/Strategies/CloseUpStrategy.cs
-
 using UnityEngine;
-
-/// <summary>
-/// Slower to frame precisely, higher quality yield than a wide shot.
-/// Small risk of a fumbled take — mid-tier risk/reward.
-/// </summary>
 public class CloseUpStrategy : IShotStrategy
 {
     public string ShotName => "Close-Up";

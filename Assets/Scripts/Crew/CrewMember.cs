@@ -1,6 +1,3 @@
-// CrewMember.cs
-// Location in Unity project: Assets/Scripts/Crew/CrewMember.cs
-
 using UnityEngine;
 
 /// <summary>
