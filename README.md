@@ -1,104 +1,98 @@
-# KCAMEL Set
+# KCAMEL Set — Production Day
 
-A Unity 2D game built to demonstrate core OOP principles, three design patterns (Strategy, Observer, State), and two algorithms (linear nearest-neighbor search, bounded resource tracking).
+A top-down 2D Unity game where you play a Director of Photography (DP) managing a single film shoot day: move between scene locations, choose a shot strategy for each one, and manage a finite lighting budget before the day wraps.
 
-You play a Director of Photography (DP) on a one-day shoot. Move between three film scenes, pick a shot strategy for each (Wide / Close-Up / Tracking), and manage a shared, depleting light budget — every scene gets exactly one shot attempt, so the strategy you spend on an easy scene is light you can never get back for a harder one later.
+Built for the ALU Advanced C# / Unity Game Development course — Mini Game: Principles of OOP and Design Patterns assignment.
+
+---
+
+## Table of Contents
+- [Gameplay Overview](#gameplay-overview)
+- [Controls](#controls)
+- [Setup Instructions](#setup-instructions)
+- [Project Structure](#project-structure)
+- [Design Patterns](#design-patterns)
+- [Algorithms](#algorithms)
+- [OOP Principles](#oop-principles)
+- [Known Limitations](#known-limitations)
+- [Credits](#credits)
+
+---
+
+## Gameplay Overview
+
+You control a DP on a film set with three scenes to shoot: an **Easy**, a **Medium**, and a **Hard** scene, each requiring a different quality target. You have three shot strategies available — **Wide Shot**, **Close-Up**, and **Tracking Shot** — each with a different light cost, time cost, and chance of a botched take.
+
+Each scene only gets **one shot attempt**. If your chosen strategy doesn't meet that scene's quality target, the scene is marked **failed permanently** — there are no retries. You also have a **shared, limited light budget** across the whole day, so spending an expensive strategy on an easy scene can cost you the light needed to complete a harder scene later.
+
+The day ends (wraps) once all three scenes are resolved, or once your light budget runs out — whichever comes first. An end screen reports whether you successfully wrapped all three scenes or ran out of light with scenes still unresolved.
+
+## Controls
+
+| Action | Input |
+|---|---|
+| Move DP | Arrow keys / WASD |
+| Select shot strategy | Click **Wide Shot**, **Close-Up**, or **Tracking Shot** button |
 
 ## Setup Instructions
 
-**Requirements**
-- Unity Hub
-- Unity Editor **2022.3 LTS** or later (2D URP template project)
-- Git
+1. Clone or download this repository.
+2. Open the project in **Unity 6 (6000.4.5f1)** or later via Unity Hub.
+3. Open the `SampleScene` scene under `Assets/Scenes/`.
+4. Press **Play** in the Unity Editor.
+5. To build a standalone version: `File > Build Settings > Build`.
 
-**Clone and open**
-1. Clone the repository:
-   ```
-   git clone (https://github.com/Ntare-GAMA/KCAMEL-Set/)
-   ```
-2. Open **Unity Hub** → **Add** → select the cloned project folder.
-3. Open the project — Unity will import assets and packages automatically on first load (this can take a few minutes).
-4. In the **Project** window, go to `Assets/Scenes/` and open the main scene (double-click it).
-5. Press **Play** in the Editor toolbar to run the game.
+No external packages or paid assets are required beyond what's included in the repository.
 
-**Controls**
-- Move the DP: **arrow keys** or **WASD**
-- Attempt a shot: walk near a scene, then click one of the three on-screen shot buttons (**Wide**, **Close-Up**, **Tracking**)
-
-**Build**
-- `File → Build Settings` → select your target platform → `Build` (or `Build and Run`). The main scene must be added under **Scenes In Build** if it isn't already.
-
-**Troubleshooting**
-- If scripts show compile errors on first open, wait for Unity to finish importing (bottom-right progress spinner) before checking the Console again.
-- If UI elements appear blank, confirm `TextMeshPro` essentials have been imported (Unity will prompt for this automatically the first time a TMP object is selected).
-
-## How to play
-
-1. Move the DP toward one of the three scene markers.
-2. Click a shot-selection button to attempt that scene: **Wide** (cheap, safe, lower quality), **Close-Up** (moderate cost/quality, small failure risk), or **Tracking** (expensive, highest quality, highest failure risk).
-3. Watch the light meter in the HUD — it depletes by the light cost of whichever shot you choose and never refills.
-4. Each scene only gets one attempt: meeting its quality target completes it, falling short fails it permanently — no retries.
-5. The day wraps once all three scenes are resolved, or the moment the light budget hits zero, whichever comes first. The end screen reports a win (all scenes succeeded) or a loss.
-
-## Project structure
+## Project Structure
 
 ```
 Assets/Scripts/
-├── Algorithms/
-│   ├── NearestSceneFinder.cs     Algorithm 1 — nearest incomplete scene (linear search)
-│   └── LightBudgetManager.cs     Algorithm 2 — bounded resource decrement
-├── Core/
-│   ├── ProductionManager.cs      Central orchestrator; owns the State machine
-│   └── ProductionState.cs        State pattern — PreProduction / Shooting / Wrapped
-├── Crew/
-│   ├── CrewMember.cs             Abstract base (Abstraction, Inheritance)
-│   ├── CameraOperator.cs
-│   ├── Gaffer.cs
-│   └── SoundTech.cs
-├── Events/
-│   └── SceneEventPublisher.cs    Observer pattern subject
-├── Player/
-│   └── DPController.cs           DP movement + encapsulated position access
-├── Scenes_Data/
-│   └── FilmScene.cs              Scene data with encapsulated resolution state
-├── Strategies/
-│   ├── IShotStrategy.cs          Strategy pattern interface
-│   ├── WideShotStrategy.cs
-│   ├── CloseUpStrategy.cs
-│   └── TrackingShotStrategy.cs
-└── UI/
-    ├── DirectorHUD.cs            Observer subscriber
-    ├── LightMeterUI.cs           Observer subscriber (subscribes to LightBudgetManager)
-    ├── CrewStatusUI.cs           Observer subscriber
-    ├── ProgressUI.cs             Observer subscriber
-    ├── EndScreenUI.cs            Observer subscriber
-    ├── ShotSelectButton.cs       Builds a concrete IShotStrategy on click
-    ├── RecIndicatorUI.cs         Cosmetic — blinking REC dot
-    └── TimecodeUI.cs             Cosmetic — running timecode display
+├── Core/               ProductionManager (orchestrator), ProductionState (enum)
+├── Strategies/          IShotStrategy interface + 3 concrete strategies
+├── Crew/                CrewMember abstract class + 3 concrete crew roles
+├── Scenes_Data/         FilmScene (scene data + resolution logic)
+├── Events/              SceneEventPublisher (Observer pattern subject)
+├── Algorithms/          NearestSceneFinder, LightBudgetManager
+├── Player/              DPController (top-down movement)
+└── UI/                  DirectorHUD, LightMeterUI, CrewStatusUI, EndScreenUI,
+                         ProgressUI, RecIndicatorUI, TimecodeUI, ShotSelectButton
 ```
 
-## OOP principles
+## Design Patterns
 
-| Principle | Where it shows up |
-|---|---|
-| Encapsulation | `FilmScene` only changes `IsComplete`/`IsFailed`/`AccumulatedQuality` through `TryCompleteShot()`; `DPController` exposes `GetCurrentPosition()` instead of its `Rigidbody2D`; `LightBudgetManager.CurrentLight` only changes through `ConsumeLight()` |
-| Abstraction | `IShotStrategy` defines *what* a shot provides without saying *how*; `CrewMember` declares `PerformTask()` as abstract |
-| Inheritance | `CameraOperator`, `Gaffer`, `SoundTech` all inherit from `CrewMember` |
-| Polymorphism | `ProductionManager.ExecuteShot(IShotStrategy strategy)` calls `strategy.Execute()` identically regardless of which concrete strategy was passed in |
+### Strategy — `IShotStrategy`
+`WideShotStrategy`, `CloseUpStrategy`, and `TrackingShotStrategy` each implement `IShotStrategy`, letting `ProductionManager` execute any shot type polymorphically through a single interface call (`strategy.Execute()`), without knowing which concrete strategy it's holding.
 
-Full writeup with code excerpts and reflections: `Part1-2_OOP_and_Design_Patterns.docx`.
+### Observer — `SceneEventPublisher`
+Five UI scripts (`DirectorHUD`, `LightMeterUI`, `CrewStatusUI`, `EndScreenUI`, `ProgressUI`) each subscribe independently to events raised by `SceneEventPublisher`, decoupling game logic from the UI layer entirely. `ProductionManager` never references any UI class directly.
 
-## Design patterns
-
-- **Strategy** — `IShotStrategy` + `WideShotStrategy` / `CloseUpStrategy` / `TrackingShotStrategy`. Each shot type is a fully self-contained, interchangeable object; `ProductionManager` depends only on the interface.
-- **Observer** — `SceneEventPublisher` (events: `OnSceneStarted`, `OnSceneCompleted`, `OnShotExecuted`, `OnDayWrapped`, `OnProgressUpdated`) decouples `ProductionManager` from the five UI panels that react to it. `LightBudgetManager` independently publishes `OnLightChanged` / `OnLightDepleted`, observed by `LightMeterUI`.
-- **State** — `ProductionState` enum (`PreProduction`, `Shooting`, `Wrapped`), with every transition funneled through `ProductionManager.TransitionTo()`, which guards against invalid transitions such as wrapping while scenes and light both remain.
-
-Full writeup: `Part1-2_OOP_and_Design_Patterns.docx`.
+### State — `ProductionState`
+An enum (`PreProduction`, `Shooting`, `Wrapped`) with all transitions guarded inside `ProductionManager.TransitionTo()`, preventing invalid states such as wrapping the day while scenes remain and light is still available.
 
 ## Algorithms
 
-| Algorithm | File | Complexity |
-|---|---|---|
-| Nearest incomplete scene (linear search / greedy nearest-neighbor) | `NearestSceneFinder.cs` | O(n) time, O(1) space |
-| Light budget tracking (bounded resource decrement) | `LightBudgetManager.cs` | O(1) per call |
+### 1. Nearest-Scene Search — `NearestSceneFinder`
+A linear O(n) scan that finds the closest unresolved scene to the DP's current position whenever a shot is executed, using squared-distance comparisons to avoid unnecessary square-root calls.
+
+### 2. Light Budget (Resource Optimization) — `LightBudgetManager`
+Tracks a finite, shared light resource that depletes based on the chosen strategy's cost, blocks unaffordable shots outright, and fires events (`OnLightChanged`, `OnLightDepleted`) that the UI and `ProductionManager` both react to independently.
+
+## OOP Principles
+
+| Principle | Where it's demonstrated |
+|---|---|
+| Encapsulation | `FilmScene`'s completion state can only change through `TryCompleteShot()` |
+| Abstraction | `IShotStrategy` exposes only what a shot needs to report, hiding internal execution logic |
+| Inheritance | `CrewMember` (abstract) → `CameraOperator`, `Gaffer`, `SoundTech` |
+| Polymorphism | `PerformTask()` and `Execute()` calls resolve to different behavior depending on the concrete runtime type |
+
+## Known Limitations
+
+- Shot strategy failure is randomized (`UnityEngine.Random`), so occasional unlucky runs on the Hard scene are expected by design — this is intentional risk, not a bug.
+- Crew role icons are decorative HUD elements; crew members do not have independent in-world behavior beyond their `PerformTask()` method, which is not currently called from gameplay (reserved for the OOP/inheritance demonstration).
+- The camera-viewfinder HUD styling (corner brackets, REC indicator, timecode) is purely cosmetic framing and does not affect gameplay logic.
+
+## Credits
+
+Developed by NTARE GAMA Allan ( KCAMEL Productions) for ALU's Advanced C# / Unity Game Development course.
