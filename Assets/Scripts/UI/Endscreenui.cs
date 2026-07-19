@@ -37,7 +37,7 @@ public class EndScreenUI : MonoBehaviour
         {
             endScreenText.text = allScenesComplete
                 ? "That's a wrap! All scenes shot successfully."
-                : "Ran out of light — day cut short.";
+                : "Ran out of light, day cut short.";
         }
     }
 }
